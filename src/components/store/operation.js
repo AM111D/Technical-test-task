@@ -6,11 +6,16 @@ axios.defaults.baseURL = 'https://647a3161a455e257fa6472f1.mockapi.io';
 
 export const fetchCards = createAsyncThunk(
   'cards/fetchAll',
-  async (_, thunkAPI) => {
+  async ({ page, limit }, thunkAPI) => {
     try {
-      const response = await axios.get('/cards');
+      const response = await axios.get('/cards', {
+        params: {
+          page,
+          limit,
+        },
+      });
       //   console.log(response);
-      //   console.log(response.data);
+      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

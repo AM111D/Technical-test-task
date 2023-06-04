@@ -1,24 +1,17 @@
-
-import Card from "./Card/Card";
+import { Route, Routes } from 'react-router-dom';
+import Card from './Card/Card';
+import HomeView from './views/HomeView';
+import Container from './Container/Container';
+import Navigation from './Navigation/Navigation';
 
 export const App = () => {
-  
-
   return (
-    <>
-      {/* <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101'
-        }}
-      >
-        Technical-test-task
-      </div> */}
-      <Card/>
-    </>
+    <Container>
+      <Navigation/>
+      <Routes>
+        <Route path="/" element={<HomeView />} />
+        <Route path="/card" element={<Card />} />
+      </Routes>
+   </Container>
   );
 };

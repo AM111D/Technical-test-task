@@ -10,6 +10,8 @@ const initialState = {
   cards: [],
   isLoading: false,
   error: null,
+  page: 1,
+  limit: 3,
 };
 
 const dispatch = useDispatch;
@@ -17,6 +19,11 @@ const dispatch = useDispatch;
 const cardsSlice = createSlice({
   name: 'cards',
   initialState,
+  reducers: {
+    updateFollowers: (state, action) => {
+      state.followedCardIds = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchCards.pending, state => {
@@ -47,5 +54,5 @@ const cardsSlice = createSlice({
       });
   },
 });
-
+export const { updateFollowers } = cardsSlice.actions;
 export const cardsReducer = cardsSlice.reducer;
