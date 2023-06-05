@@ -1,25 +1,13 @@
 import React from 'react';
-
-const styles = {
-  container: {
-    minHeight: 'calc(100vh - 50px)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontWeight: 500,
-    fontSize: 48,
-    textAlign: 'center',
-  },
-};
+import css from './HomeView.module.css';
 
 const HomeView = () => (
-  <div style={styles.container}>
-    <h1 style={styles.title}>
-      Приветственная страница нашего сервиса{' '}
-      <span role="img" aria-label="Иконка приветствия">
-        💁‍♀️
+  <div className={css.container}>
+    <h1 className={css.title}>
+      Hi 🤩 I'm glad to welcome you in the new application,
+      <br /> go to the page with cards to subscribe to popular users{' '}
+      <span role="img" aria-label="Иконка приветствия" className={css.emoji}>
+        😎
       </span>
     </h1>
   </div>

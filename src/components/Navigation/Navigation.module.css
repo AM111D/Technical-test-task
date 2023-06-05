@@ -21,6 +21,7 @@
   color: #333;
   font-weight: bold;
   transition: color 0.3s ease;
+  font-size: 18px;
 }
 
 .headerListItemLink:hover {
@@ -38,6 +39,10 @@
   color: #fff;
   text-align: center;
   padding: 15px;
+}
+
+.activeLink {
+  color: red;
 }
 
 

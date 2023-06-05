@@ -9,10 +9,11 @@ import { useDispatch } from 'react-redux';
 
 const initialState = {
   cards: [],
+  totalItems: 0,
   isLoading: false,
   error: null,
   page: 1,
-  limit: 3,
+  limit: 9,
 };
 
 // const dispatch = useDispatch;

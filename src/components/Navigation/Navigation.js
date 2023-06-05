@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { Suspense } from 'react';
 // import { Suspense } from 'react';
 // import { styled } from 'react';
@@ -15,6 +15,7 @@ const Navigation = () => {
       borderBottom: '1px solid #2A363B',
     },
   };
+  const location = useLocation();
 
   return (
     <div>
@@ -22,12 +23,23 @@ const Navigation = () => {
         <nav>
           <ul className={css.headerList}>
             <li className={css.headerListItem}>
-              <NavLink to="/" className={css.headerListItemLink} exact={true}>
+              <NavLink
+                to="/"
+                className={`${css.headerListItemLink} ${
+                  location.pathname === '/' ? css.activeLink : ''
+                }`}
+                exact={true}
+              >
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/card" className={css.headerListItemLink}>
+              <NavLink
+                to="/card"
+                className={`${css.headerListItemLink} ${
+                  location.pathname === '/card' ? css.activeLink : ''
+                }`}
+              >
                 Card
               </NavLink>
             </li>
