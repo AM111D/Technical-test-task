@@ -11,9 +11,9 @@ export const App = () => {
       <Navigation />
       <Container>
         <Routes>
-          <Route path="/home" element={<HomeView />} />
+          <Route path="/" element={<HomeView />} />
           <Route path="/tweets" element={<CardContainer />} />
-          <Route path="*" element={<Navigate to="/home" />} />
+          <Route path="*" element={<Navigate to="/technical-test-task" />} />
         </Routes>
       </Container>
     </>

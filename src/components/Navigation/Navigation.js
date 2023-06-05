@@ -13,7 +13,7 @@ const Navigation = () => {
           <ul className={css.headerList}>
             <li className={css.headerListItem}>
               <NavLink
-                to="/home"
+                to="/"
                 className={`${css.headerListItemLink} ${
                   location.pathname === '/' ? css.activeLink : ''
                 }`}
