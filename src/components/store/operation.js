@@ -8,7 +8,6 @@ export const fetchCards = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/cards');
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -26,8 +25,6 @@ export const fetchPagination = createAsyncThunk(
           limit: limit,
         },
       });
-
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

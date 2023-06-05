@@ -19,8 +19,6 @@ const cardsSlice = createSlice({
   initialState,
   reducers: {
     updatePage: (state, action) => {
-      console.log(state);
-      console.log(action);
       state.page = action.payload;
     },
   },
@@ -32,8 +30,7 @@ const cardsSlice = createSlice({
       .addCase(fetchCards.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        console.log(action);
-        console.log(!action.payload === 0);
+
         if (action.payload === 0) {
           alert('Контент отсутствует');
         } else {

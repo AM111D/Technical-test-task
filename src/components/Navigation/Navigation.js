@@ -17,14 +17,14 @@ const Navigation = () => {
                 className={`${css.headerListItemLink} ${
                   location.pathname === '/' ? css.activeLink : ''
                 }`}
-                exact={true}
+                exact={true.toString()}
               >
                 Home
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/card"
+                to="/tweets"
                 className={`${css.headerListItemLink} ${
                   location.pathname === '/card' ? css.activeLink : ''
                 }`}
