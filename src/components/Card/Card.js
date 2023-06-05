@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './Card.module.css';
-import defaultAvatar from '../img/picture2 1.png';
+import defaultAvatar from '../img/001-boy.svg';
 import askImg from '../img/picture2 1.png';
 import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
 

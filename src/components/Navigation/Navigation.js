@@ -1,20 +1,9 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { Suspense } from 'react';
-// import { Suspense } from 'react';
-// import { styled } from 'react';
-// import styled from 'styled-components';
 
 import css from './Navigation.module.css';
 
 const Navigation = () => {
-  const styles = {
-    header: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      borderBottom: '1px solid #2A363B',
-    },
-  };
   const location = useLocation();
 
   return (

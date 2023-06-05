@@ -1,11 +1,9 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import {
   decrementFollowers,
   fetchCards,
-  fetchPagination,
   incrementFollowers,
 } from './operation';
-import { useDispatch } from 'react-redux';
 
 const initialState = {
   cards: [],
@@ -15,8 +13,6 @@ const initialState = {
   page: 1,
   limit: 9,
 };
-
-// const dispatch = useDispatch;
 
 const cardsSlice = createSlice({
   name: 'cards',
@@ -62,9 +58,6 @@ const cardsSlice = createSlice({
           state.cards[cardIndex].followers = updatedFollowers;
         }
       });
-    //   .addCase(fetchPagination.fulfilled, (state, action) => {
-    //     state.page = action.payload;
-    //   });
   },
 });
 export const { updatePage } = cardsSlice.actions;

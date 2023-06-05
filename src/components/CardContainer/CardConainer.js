@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchPagination,
@@ -15,16 +15,14 @@ function CardContainer() {
   const [followedCardIds, setFollowedCardIds] = useState([]);
   const cards = useSelector(getAllCards);
 
-  const fetchData = () => {
+  const fetchData = useCallback(() => {
     dispatch(fetchPagination({ page, limit: 9 }));
-  };
+  }, [dispatch, page]);
 
   useEffect(() => {
     const storedPage = localStorage.getItem('page');
     if (storedPage) {
       dispatch(updatePage(Number(storedPage)));
-    } else {
-      fetchData();
     }
 
     const storedFollowedCardIds = localStorage.getItem('followedCardIds');
@@ -32,7 +30,11 @@ function CardContainer() {
       const parsedFollowedCardIds = JSON.parse(storedFollowedCardIds);
       setFollowedCardIds(parsedFollowedCardIds);
     }
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   useEffect(() => {
     localStorage.setItem('page', page);

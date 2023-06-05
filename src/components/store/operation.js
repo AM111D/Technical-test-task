@@ -39,14 +39,11 @@ export const incrementFollowers = createAsyncThunk(
   'card/increment',
   async (cardId, thunkAPI) => {
     try {
-      // Получаем текущую карточку с бекенда
       const response = await axios.get(`/cards/${cardId}`);
       const card = response.data;
 
-      // Инкрементируем значение followers
       const updatedFollowers = card.followers + 1;
 
-      // Отправляем обновленные данные на бекенд
       await axios.put(`/cards/${cardId}`, { followers: updatedFollowers });
 
       return { cardId, updatedFollowers };
@@ -60,14 +57,11 @@ export const decrementFollowers = createAsyncThunk(
   'card/decrement',
   async (cardId, thunkAPI) => {
     try {
-      // Получаем текущую карточку с бекенда
       const response = await axios.get(`/cards/${cardId}`);
       const card = response.data;
 
-      // Инкрементируем значение followers
       const updatedFollowers = card.followers - 1;
 
-      // Отправляем обновленные данные на бекенд
       await axios.put(`/cards/${cardId}`, { followers: updatedFollowers });
 
       return { cardId, updatedFollowers };
