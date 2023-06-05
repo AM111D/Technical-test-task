@@ -3,6 +3,7 @@ import css from './Card.module.css';
 import defaultAvatar from '../img/001-boy.svg';
 import askImg from '../img/picture2 1.png';
 import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
+import logo from '../img/Vector.svg';
 
 function Card({ cards, followedCardIds, addFollow, removeFollow }) {
   const formatNumber = number => {
@@ -27,6 +28,7 @@ function Card({ cards, followedCardIds, addFollow, removeFollow }) {
                 alt="user"
                 onError={handleImageError}
               />
+              <img src={logo} className={css.absoluteImage} alt="user" />
             </div>
             <p className={css.cardTweets}>{formatNumber(card.tweets)} tweets</p>
             <p className={css.cardFollowers}>

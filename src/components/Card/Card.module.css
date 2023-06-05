@@ -9,6 +9,17 @@
 display: block;
 margin: auto;
 }
+.imageWrapper {
+  position: relative;
+}
+.absoluteImage {
+  position: absolute;
+  top: 20px;
+  left: 47px;
+
+  transform: translate(-50%, -50%);
+  /* Дополнительные стили для абсолютного позиционирования */
+}
 
 .card {
   position: relative;
@@ -92,7 +103,8 @@ font-weight: 500;
 font-size: 20px;
 line-height: 24px;
 text-transform: uppercase;
-
+display: flex;
+justify-content: center;
 color: #EBD8FF;
 }
 
@@ -103,12 +115,10 @@ font-weight: 500;
 font-size: 20px;
 line-height: 24px;
 text-transform: uppercase;
-
+display: flex;
+justify-content: center;
 color: #EBD8FF;
 }
 
 
 
-.qwe {
-color: red;
-}
