@@ -22,7 +22,7 @@ const Navigation = () => {
         <nav>
           <ul className={css.headerList}>
             <li className={css.headerListItem}>
-              <NavLink to="/" className={css.headerListItemLink} exact="true">
+              <NavLink to="/" className={css.headerListItemLink} exact={true}>
                 Home
               </NavLink>
             </li>

@@ -33,16 +33,19 @@ box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06), inset 0px -1.71846px 3.
 }
 
 .cardAvatar {
-  position: relative; /* Добавьте это свойство */
+  position: relative;
   width: 62px;
-  height: 62px;
+  height: 60px;
+  padding: 10px;
   display: block;
-  /* margin-top: 17px; */
   margin: 17px auto;
-
-
-  /* Добавьте свойство для расположения изображения пользователя */
+  background: #EBD8FF;
+  box-shadow: 0px 4.39163px 4.39163px rgba(0, 0, 0, 0.06), inset 0px -2.19582px 4.39163px #AE7BE3, inset 0px 4.39163px 3.29372px #FBF8FF;
+  border-radius: 40.1749px;
+  overflow: hidden;
 }
+
+
 
 .btnIsOk {
   position: absolute;

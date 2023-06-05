@@ -2,6 +2,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 import {
   decrementFollowers,
   fetchCards,
+  fetchPagination,
   incrementFollowers,
 } from './operation';
 import { useDispatch } from 'react-redux';
@@ -14,14 +15,16 @@ const initialState = {
   limit: 3,
 };
 
-const dispatch = useDispatch;
+// const dispatch = useDispatch;
 
 const cardsSlice = createSlice({
   name: 'cards',
   initialState,
   reducers: {
-    updateFollowers: (state, action) => {
-      state.followedCardIds = action.payload;
+    updatePage: (state, action) => {
+      console.log(state);
+      console.log(action);
+      state.page = action.payload;
     },
   },
   extraReducers: builder => {
@@ -32,7 +35,13 @@ const cardsSlice = createSlice({
       .addCase(fetchCards.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.cards = action.payload;
+        console.log(action);
+        console.log(!action.payload === 0);
+        if (action.payload === 0) {
+          alert('Контент отсутствует');
+        } else {
+          state.cards = action.payload;
+        }
       })
       .addCase(fetchCards.rejected, (state, action) => {
         state.isLoading = false;
@@ -52,7 +61,10 @@ const cardsSlice = createSlice({
           state.cards[cardIndex].followers = updatedFollowers;
         }
       });
+    //   .addCase(fetchPagination.fulfilled, (state, action) => {
+    //     state.page = action.payload;
+    //   });
   },
 });
-export const { updateFollowers } = cardsSlice.actions;
+export const { updatePage } = cardsSlice.actions;
 export const cardsReducer = cardsSlice.reducer;

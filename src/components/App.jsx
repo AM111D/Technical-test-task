@@ -6,12 +6,15 @@ import Navigation from './Navigation/Navigation';
 
 export const App = () => {
   return (
-    <Container>
+    <>
       <Navigation/>
+      <Container>
       <Routes>
         <Route path="/" element={<HomeView />} />
         <Route path="/card" element={<Card />} />
       </Routes>
    </Container>
+    </>
+    
   );
 };

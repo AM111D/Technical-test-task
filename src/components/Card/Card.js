@@ -1,52 +1,31 @@
 import {
   decrementFollowers,
   fetchCards,
+  fetchPage,
+  fetchPagination,
   incrementFollowers,
 } from 'components/store/operation';
-import { getAllCards } from 'components/store/selectors';
+import { getAllCards, getPage } from 'components/store/selectors';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './Card.module.css';
 import askImg from '../img/picture2 1.png';
 import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
+import { updatePage } from 'components/store/cardsSlice';
 
 function Card() {
+  const page = useSelector(getPage);
   const [followedCardIds, setFollowedCardIds] = useState([]);
   const dispatch = useDispatch();
   const cards = useSelector(getAllCards);
-
-  // useEffect(() => {
-  //   console.log(localStorage.clear());
-  // }, []);
-
-  // useEffect(() => {
-  //   const persistedFollowedCardIds = localStorage.getItem('followedCardIds');
-
-  //   // Очистить только данные 'persist:root'
-  //   localStorage.removeItem('persist:root');
-
-  //   // Восстановить данные 'followedCardIds', если они существуют
-  //   if (persistedFollowedCardIds) {
-  //     localStorage.setItem('followedCardIds', persistedFollowedCardIds);
-  //   }
-  // }, []);
+  const fetchData = () => {
+    dispatch(fetchPagination({ page: 1, limit: 3 })); // Здесь должен быть ваш действующий метод для получения данных с бэкенда
+  };
 
   useEffect(() => {
-    if (cards.length === 0) {
-      dispatch(fetchCards({ page: 1, limit: 3 }));
-    }
-  }, [cards.length, dispatch]);
+    dispatch(updatePage(1)); // Установка начального значения страницы в 1
+    fetchData();
 
-  useEffect(() => {
-    // Восстановление состояния кнопки из localStorage при загрузке компонента
-    const storedFollowedCardIds = localStorage.getItem('followedCardIds');
-    if (storedFollowedCardIds) {
-      setFollowedCardIds(JSON.parse(storedFollowedCardIds));
-    }
-  }, []);
-
-  useEffect(() => {
-    // Восстановление состояния кнопки из localStorage при загрузке компонента
     const storedFollowedCardIds = localStorage.getItem('followedCardIds');
     if (storedFollowedCardIds) {
       const parsedFollowedCardIds = JSON.parse(storedFollowedCardIds);
@@ -55,14 +34,16 @@ function Card() {
   }, []);
 
   useEffect(() => {
-    const handleBeforeUnload = () => {
+    const handleUnload = () => {
       localStorage.setItem('followedCardIds', JSON.stringify(followedCardIds));
+      localStorage.setItem('currentPage', page.toString()); // Обновление текущей страницы на 1 в localStorage
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('unload', handleUnload);
+    localStorage.setItem('currentPage', 1);
 
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('unload', handleUnload);
     };
   }, [followedCardIds]);
 
@@ -89,8 +70,11 @@ function Card() {
       <div className={css.cardContainer}>
         {cards.map(card => (
           <div key={card.id} className={css.card}>
-            <img src={askImg} className={css.askImg} />
-            <img src={card.avatar} className={css.cardAvatar} alt="user" />
+            <div className={css.imageWrapper}>
+              <div className={css.circle}></div>
+              <img src={askImg} className={css.askImg} alt="placeholder" />
+              <img src={card.avatar} className={css.cardAvatar} alt="user" />
+            </div>
             <p className={css.cardTweets}>{formatNumber(card.tweets)} tweets</p>
             <p className={css.cardFollowers}>
               {formatNumber(card.followers)} followers
